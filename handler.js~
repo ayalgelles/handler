@@ -1,0 +1,14 @@
+(function () {
+  var fs = __meteor_bootstrap__.require('fs');
+  var child_process = __meteor_bootstrap__.require('child_process');
+  var querystring = __meteor_bootstrap__.require('querystring');
+  var urlParser = __meteor_bootstrap__.require('url');
+  var app = __meteor_bootstrap__.app;
+
+    app.use(function (req, res, next) {
+	// reassembling url without escaped fragment if exists
+	var parsedUrl = urlParser.parse(req.url);
+	var parsedQuery = querystring.parse(parsedUrl.query);
+        next();
+    });
+})();
